@@ -1,0 +1,68 @@
+{
+  "users": [
+    {
+      "_id": "ObjectId - unique identifier for the user",
+      "name": "string - full name of the user",
+      "email": "string - email address used to log in",
+      "passwordHash": "string - hashed password for security",
+      "createdAt": "Date - when the user account was created"
+    }
+  ],
+
+  "households": [
+    {
+      "_id": "ObjectId - unique identifier for the household",
+      "name": "string - name of the household e.g. Sunset Apt 4B",
+      "address": "string - physical address of the household",
+      "createdAt": "Date - when the household was created",
+      "members": [
+        {
+          "userID": "ObjectId - reference to the user who is a member",
+          "role": "string - role of the member e.g. admin or member",
+          "joinDate": "Date - when the user joined the household",
+          "leaveDate": "Date - when the user left, null if still active"
+        }
+      ]
+    }
+  ],
+
+  "expenses": [
+    {
+      "_id": "ObjectId - unique identifier for the expense",
+      "householdID": "ObjectId - reference to the household this expense belongs to",
+      "categoryID": "ObjectId - reference to the category of this expense",
+      "paidByUserID": "ObjectId - reference to the user who paid",
+      "title": "string - name of the expense e.g. Rent, Groceries",
+      "totalAmount": "number - total cost of the expense",
+      "datePaid": "Date - when the expense was paid",
+      "notes": "string - any additional notes about the expense",
+      "splits": [
+        {
+          "userID": "ObjectId - reference to the user who owes a share",
+          "splitAmount": "number - amount this user owes",
+          "isPaid": "boolean - true if this user has paid their share, false if not"
+        }
+      ]
+    }
+  ],
+
+  "settlements": [
+    {
+      "_id": "ObjectId - unique identifier for the settlement",
+      "payerID": "ObjectId - reference to the user who is paying",
+      "payeeID": "ObjectId - reference to the user who is receiving payment",
+      "householdID": "ObjectId - reference to the household this settlement belongs to",
+      "amount": "number - amount being settled",
+      "date": "Date - when the settlement was made",
+      "notes": "string - any additional notes about the settlement"
+    }
+  ],
+
+  "categories": [
+    {
+      "_id": "ObjectId - unique identifier for the category",
+      "name": "string - name of the category e.g. Rent, Utilities, Groceries",
+      "description": "string - description of what expenses belong in this category"
+    }
+  ]
+}
